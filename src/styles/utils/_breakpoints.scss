@@ -1,0 +1,27 @@
+/**
+ * For each breakpoint (small, medium ,large, x-large) we create three utility classes:
+ * hide-*, hide-*-up, and hide-*-down. These classes apply `display: none;` to the
+ * element when it matches the corresponding media breakpoint.
+ */
+@mixin createBreakpointUtils() {
+  $breakpoints: small, medium, large, x-large;
+
+  @each $b in $breakpoints {
+    .hide-#{$b} {
+      @include media-breakpoint($b, only) {
+        display: none;
+      }
+    }
+
+    $scopes: up, down;
+    @each $s in $scopes {
+      .hide-#{$b}-#{$s} {
+        @include media-breakpoint($b, $s) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@include createBreakpointUtils();

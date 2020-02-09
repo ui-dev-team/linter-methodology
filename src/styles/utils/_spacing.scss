@@ -1,0 +1,49 @@
+// Spacing utilies
+// .[pad|mar]-[top|right|bottom|left|vertical|horizontal]-[0-9|half]
+
+$spacing-properties: (
+  padding: 'padding',
+  margin: 'margin',
+);
+
+$spacing-sub-properties: (
+  top: 'top',
+  right: 'right',
+  bottom: 'bottom',
+  left: 'left',
+  vertical: (
+    'top',
+    'bottom',
+  ),
+  horizontal: (
+    'left',
+    'right',
+  ),
+);
+
+$spacing-values: join($spacing-units, map-keys($spacing-keywords));
+
+@mixin create-spacing-util-classes($property-map, $sub-property-map, $values) {
+  @each $prop, $key in $property-map {
+    @each $v in $values {
+      .#{$prop}-#{$v} {
+        #{map-get($property-map, #{$prop})}: spacing($v);
+      }
+
+      @each $sub-prop, $sub-key in $sub-property-map {
+        .#{$prop}-#{$sub-prop}-#{$v} {
+          // stylelint-disable-next-line max-nesting-depth
+          @each $attribute in map-get($sub-property-map, #{$sub-prop}) {
+            #{map-get($property-map, #{$prop})}-#{$attribute}: spacing($v);
+          }
+        }
+      }
+    }
+  }
+}
+
+@include create-spacing-util-classes(
+  $spacing-properties,
+  $spacing-sub-properties,
+  $spacing-values
+);

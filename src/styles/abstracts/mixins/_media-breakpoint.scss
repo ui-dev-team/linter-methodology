@@ -1,0 +1,103 @@
+// - media-breakpoint($size, $scope: only)
+// Returns a media query for the specified size and scope.
+
+// Examples:
+
+// media-breakpoint(small); => @media screen and (min-width: 414px)
+// media-breakpoint(medium, only); => @media screen and (min-width: 768px) and (max-width: 992px)
+// media-breakpoint(large, down); => @media screen and (max-width: 1200px)
+// media-breakpoint(foo); => @error Invalid media size: `foo`
+// media-breakpoint(small, foo); => @error Invalid media scope: `foo`
+
+// Parameters:
+// $size - [small, medium, large, or x-large]
+// $scope - [up, only, down]
+
+// Returns:
+// Media Query
+
+// Raises:
+// (ArgumentError) — if $size or $scope is not a valid parameter
+@mixin media-breakpoint($size, $scope: only) {
+  $sizes: small, medium, large, x-large;
+
+  $small-breakpoint: 414px;
+  $medium-breakpoint: 768px;
+  $large-breakpoint: 1200px;
+
+  // Maps containing the min/max values for each size, where the index in the list maps to the index of the sizes
+  $up-size-map: (
+      min: 0,
+    ),
+    (
+      min: #{$small-breakpoint + 1},
+    ),
+    (
+      min: #{$medium-breakpoint + 1},
+    ),
+    (
+      min: #{$large-breakpoint + 1},
+    );
+  $only-size-map: (
+      min: 0,
+      max: $small-breakpoint,
+    ),
+    (
+      min: #{$small-breakpoint + 1},
+      max: $medium-breakpoint,
+    ),
+    (
+      min: #{$medium-breakpoint + 1},
+      max: $large-breakpoint,
+    ),
+    (
+      min: #{large-breakpoint + 1},
+    );
+  $down-size-map: (
+      max: $small-breakpoint,
+    ),
+    (
+      max: $medium-breakpoint,
+    ),
+    (
+      max: $large-breakpoint,
+    ),
+    (
+      min: 0,
+    );
+
+  // Variable cannot be composed dynamically; creating a map between scope and size maps
+  $scopes: (
+    up: $up-size-map,
+    only: $only-size-map,
+    down: $down-size-map,
+  );
+
+  $size-index: index($sizes, $size);
+  $scope-values: map-get($scopes, $scope);
+
+  // Get max and min map for $size
+  $min-max-map: nth($scope-values, $size-index);
+  $min: map-get(
+    $map: $min-max-map,
+    $key: min,
+  );
+  $max: map-get(
+    $map: $min-max-map,
+    $key: max,
+  );
+
+  @if $min and $max {
+    @media screen and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $min {
+    @media screen and (min-width: $min) {
+      @content;
+    }
+  } @else if $max {
+    @media screen and (max-width: $max) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,40 @@
+// TODO: cleanup typography mixin
+// Deprecated v2.2; remove v3.0 USG-524 @ccoats
+// - remove the conditionals when we no longer need to support
+// - consolidate down to single mixin again
+// - Remove debug warnings
+@mixin typography(
+  $name: scale,
+  $modifier: base,
+  $style: null,
+  $variant: null,
+  $weight: null,
+  $color: null,
+  $use-typography-next: true,
+  $theme: base
+) {
+  @if ($enable-typography-next and $use-typography-next) {
+    @if ($style or $variant or $weight or $color) {
+      @warn "The next version of Typography supports only $name, $modifier and $theme. Legacy typography parameters will be ignored.";
+    }
+
+    @include typography-next(
+      $name: $name,
+      $modifier: $modifier,
+      $theme: $theme
+    );
+  } @else {
+    @warn "Typography will contain breaking changes in the next major release. " +
+      "To prepare for this ahead of time, apply `$enable-typography-next: true` " +
+      "before your acrylic import and follow the updated documentation.";
+
+    @include typography-current(
+      $name: $name,
+      $modifier: $modifier,
+      $style: $style,
+      $variant: $variant,
+      $weight: $weight,
+      $color: $color
+    );
+  }
+}

@@ -1,0 +1,19 @@
+@include acrylic-component() {
+  .label {
+    @include typography(scale, apple);
+    display: block;
+    margin-bottom: spacing(1);
+
+    &.label--error {
+      color: get-color(input-error-color);
+    }
+  }
+
+  .label--dark {
+    @include typography(scale, apple, $theme: dark);
+
+    &.label--error {
+      color: get-color(input-error-color, $theme: dark);
+    }
+  }
+}

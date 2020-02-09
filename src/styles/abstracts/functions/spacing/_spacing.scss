@@ -1,0 +1,52 @@
+// Usage
+
+// - spacing($units)
+
+// Returns a pixel value based on the unit provided.
+
+// Parameters:
+// $units [argList] - a list of integers 0-9 or "half"
+
+// Returns:
+// Pixels — pixel value derrived from the $units parameter
+
+// Raises:
+// (ArgumentError) — if $units is not an integer between 0 and 9 or a special keyword like "half"
+
+// Note these maps should be considered private and are only public to DRY the utility classes (abstracts/utils/spacing)
+// Use at your own risk.
+$spacing-keywords: (
+  half: 0.5,
+);
+$spacing-units: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+@function spacing($units...) {
+  $multiplier: $grid-base; // rely on grid-base global variable -- default to 8px
+  $result-spacing: ();
+
+  @each $unit in $units {
+    $keywordValue: map-get(
+      $map: $spacing-keywords,
+      $key: $unit,
+    );
+    $multiplicand: 1;
+
+    @if $keywordValue {
+      $multiplicand: $keywordValue;
+    } @else if index($spacing-units, $unit) {
+      $multiplicand: $unit;
+    } @else {
+      @error "spacing: $units must be a list of integers between 0-9 or a supported keyword";
+    }
+
+    $value: $multiplier * $multiplicand;
+
+    @if length($units) == 1 {
+      $result-spacing: $value;
+    } @else {
+      $result-spacing: append($result-spacing, $value);
+    }
+  }
+
+  @return $result-spacing;
+}

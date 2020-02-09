@@ -1,0 +1,139 @@
+@mixin typography-current(
+  $name: scale,
+  $modifier: base,
+  $style: null,
+  $variant: null,
+  $weight: null,
+  $color: null
+) {
+  $typography-scale: (
+    1: 0.625rem,
+    2: 0.688rem,
+    3: 0.75rem,
+    4: 0.875rem,
+    5: 1rem,
+    6: 1.125rem,
+    7: 1.25rem,
+    8: 1.75rem,
+    9: 2rem,
+    10: 2.25rem,
+  );
+
+  $gray-7: '#666';
+  $gray-8: '#333';
+  $gray-9: '#191919';
+
+  $typography-options: (
+    scale: (
+      book: (
+        size: map-get($typography-scale, 10),
+      ),
+      chapter: (
+        size: map-get($typography-scale, 9),
+      ),
+      page: (
+        size: map-get($typography-scale, 8),
+      ),
+      title: (
+        size: map-get($typography-scale, 7),
+      ),
+      header: (
+        size: map-get($typography-scale, 6),
+      ),
+      base: (
+        size: map-get($typography-scale, 5),
+      ),
+      subheader: (
+        size: map-get($typography-scale, 4),
+      ),
+      body: (
+        size: map-get($typography-scale, 3),
+      ),
+      index: (
+        size: map-get($typography-scale, 2),
+      ),
+      fingerprint: (
+        size: map-get($typography-scale, 1),
+      ),
+    ),
+    heading: (
+      gigantic: (
+        size: map-get($typography-scale, 9),
+      ),
+      largest: (
+        size: map-get($typography-scale, 8),
+        weight: 800,
+      ),
+      larger: (
+        size: map-get($typography-scale, 7),
+        weight: 800,
+      ),
+      large: (
+        size: map-get($typography-scale, 6),
+        color: $gray-8,
+      ),
+      base: (
+        size: map-get($typography-scale, 5),
+        color: $gray-8,
+      ),
+      small: (
+        size: map-get($typography-scale, 4),
+        weight: 800,
+        color: $gray-8,
+      ),
+      smaller: (
+        size: map-get($typography-scale, 4),
+        weight: 800,
+        color: $gray-7,
+      ),
+      smallest: (
+        size: map-get($typography-scale, 3),
+        weight: 800,
+        color: $gray-7,
+      ),
+    ),
+    copy: (
+      base: (
+        size: map-get($typography-scale, 5),
+      ),
+      small: (
+        size: map-get($typography-scale, 4),
+        color: $gray-8,
+      ),
+      smaller: (
+        size: map-get($typography-scale, 3),
+        color: $gray-9,
+      ),
+      smallest: (
+        size: map-get($typography-scale, 2),
+        weight: 800,
+      ),
+    ),
+    table: (
+      base: (
+        size: map-get($typography-scale, 3),
+        color: get-color(text-main),
+      ),
+    ),
+  );
+
+  $result-map: map-deep-get($typography-options, $name, $modifier);
+
+  $result-style: map-get($result-map, style);
+  $result-variant: map-get($result-map, variant);
+  $result-weight: map-get($result-map, weight);
+  $result-size: map-get($result-map, size);
+  $result-line-height: map-get($result-map, line-height);
+  $result-color: map-get($result-map, color);
+
+  // TODO: util for align and transform
+  // TODO do error checking for invalid combinations.
+  // TODO; shortcut for common colors: inverted, onDark, etc.
+  font-size: $result-size;
+  line-height: 1.2;
+  color: if($result-color, $result-color, $color);
+  font-style: if($result-style, $result-style, $style);
+  font-variant: if($result-variant, $result-variant, $variant);
+  // stylelint-disable-next-line font-weight-notation
+  font-weight: if($result-weight, $result-weight, $weight);
+}

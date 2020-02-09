@@ -1,0 +1,15 @@
+/**
+ * @include base-typography()
+ *
+ * Sets all font properties to the base values.
+ */
+@mixin base-typography() {
+  font-family: 'proxima-nova', 'Helvetica Neue', 'Helvetica', 'Arial',
+    sans-serif;
+  color: get-color(text-main);
+  font-style: normal;
+  font-weight: normal;
+  line-height: $base-line-height;
+  margin: 0;
+  padding: 0;
+}

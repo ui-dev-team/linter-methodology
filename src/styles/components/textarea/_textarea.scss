@@ -1,0 +1,6 @@
+// Deprecate at 3.0
+// @markboyessmith - Acrylic-197
+// Styles are provided by input__message and input__message-error
+.textarea__limit--error {
+  color: get-color(red-valencia);
+}

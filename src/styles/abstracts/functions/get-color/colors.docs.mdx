@@ -1,0 +1,53 @@
+import { Story } from '@storybook/addon-docs/blocks'
+
+# Colors
+
+Color is used to convey meaning and intent, to define structure within an interface and to evoke brand idententity.
+Two color palettes are provided for creating user interfaces; default and dark.
+An additional Chart palette is available specicifically for use with data visualisations.
+
+### Usage
+
+To use any of the available colors within your project, please use the provided `get-color` Sass function. Do not use raw hex values in code, doing so will prevent your solution from evolving in step with changes to our palettes.
+
+`get-color({color-name}, $theme: {theme-name});`
+
+### Base palette
+
+<Story id="foundations-colors--palette-base" />
+
+### Dark palette
+
+To use the `dark` theme you can apply the `{component}--dark` modifier to components that support it (see component documentation) or pass a `$theme: dark` parameter to the `get-color` mixin, e.g. `get-color(background, $theme: dark);`.
+
+<Story id="foundations-colors--palette-dark" />
+
+### Chart color palette
+
+For data visualizations, it's important that colors are consumed in a numerically ascending order. To facilitate this, Acrylic provides a separate function from `get-color` to do this: `get-chart-color`.
+
+`get-chart-color` accepts a (one-based) index value and returns the correct chart color corresponding to that order.
+
+Note that values "wrap" based on the index. If there are 5 colors in the palette, a `$value` of `2` or `7` will return the same color.
+
+<Story id="foundations-colors--chart-palette" height="240px" />
+
+#### Example
+
+- `get-chart-color(1); => purple-gigas`
+- `get-chart-color(3); => orange-carrot`
+- `get-chart-color(-2); => @error`
+- `get-chart-color(18); => blue-cerulean <= get-chart-color(5);`
+
+#### Semantic color API
+
+If you need to build custom component all of the color are exposed with semantic names. This means you can have your custom components always be in sync with the Acyrlic components.
+
+<Story id="foundations-colors--semantic-colors" />
+<Story id="foundations-colors--semantic-colors-dark" />
+
+### Deprecated colors
+
+The following colors have been deprecated. Please migrate to the current palette if you are using these.
+
+<Story id="foundations-colors--deprecated-api" />

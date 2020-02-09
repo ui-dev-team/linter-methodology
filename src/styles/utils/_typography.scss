@@ -1,0 +1,311 @@
+// Transforms
+.capitalize {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+@if $enable-typography-next {
+  .t-scale-watermelon {
+    @include typography(scale, watermelon);
+  }
+
+  .t-scale-pineapple {
+    @include typography(scale, pineapple);
+  }
+
+  .t-scale-grapefruit {
+    @include typography(scale, grapefruit);
+  }
+
+  .t-scale-mango {
+    @include typography(scale, mango);
+  }
+
+  .t-scale-banana {
+    @include typography(scale, banana);
+  }
+
+  .t-scale-orange {
+    @include typography(scale, orange);
+  }
+
+  .t-scale-apple {
+    @include typography(scale, apple);
+  }
+
+  .t-scale-peach {
+    @include typography(scale, peach);
+  }
+
+  .t-scale-pear {
+    @include typography(scale, pear);
+  }
+
+  .t-scale-kiwi {
+    @include typography(scale, kiwi);
+  }
+
+  .t-scale-strawberry {
+    @include typography(scale, strawberry);
+  }
+
+  .t-scale-blackberry {
+    @include typography(scale, blackberry);
+  }
+
+  .t-scale-raspberry {
+    @include typography(scale, raspberry);
+  }
+
+  .t-scale-cranberry {
+    @include typography(scale, cranberry);
+  }
+
+  .t-scale-blueberry {
+    @include typography(scale, blueberry);
+  }
+
+  .t-table-header {
+    @include typography(table, header);
+  }
+
+  .t-table-cell {
+    @include typography(table, cell);
+  }
+
+  .t-scale-watermelon-dark {
+    @include typography(scale, watermelon, $theme: dark);
+  }
+
+  .t-scale-pineapple-dark {
+    @include typography(scale, pineapple, $theme: dark);
+  }
+
+  .t-scale-grapefruit-dark {
+    @include typography(scale, grapefruit, $theme: dark);
+  }
+
+  .t-scale-mango-dark {
+    @include typography(scale, mango, $theme: dark);
+  }
+
+  .t-scale-banana-dark {
+    @include typography(scale, banana, $theme: dark);
+  }
+
+  .t-scale-orange-dark {
+    @include typography(scale, orange, $theme: dark);
+  }
+
+  .t-scale-apple-dark {
+    @include typography(scale, apple, $theme: dark);
+  }
+
+  .t-scale-peach-dark {
+    @include typography(scale, peach, $theme: dark);
+  }
+
+  .t-scale-pear-dark {
+    @include typography(scale, pear, $theme: dark);
+  }
+
+  .t-scale-kiwi-dark {
+    @include typography(scale, kiwi, $theme: dark);
+  }
+
+  .t-scale-strawberry-dark {
+    @include typography(scale, strawberry, $theme: dark);
+  }
+
+  .t-scale-blackberry-dark {
+    @include typography(scale, blackberry, $theme: dark);
+  }
+
+  .t-scale-raspberry-dark {
+    @include typography(scale, raspberry, $theme: dark);
+  }
+
+  .t-scale-cranberry-dark {
+    @include typography(scale, cranberry, $theme: dark);
+  }
+
+  .t-scale-blueberry-dark {
+    @include typography(scale, blueberry, $theme: dark);
+  }
+
+  .t-table-header-dark {
+    @include typography(table, header, $theme: dark);
+  }
+
+  .t-table-cell-dark {
+    @include typography(table, cell, $theme: dark);
+  }
+}
+
+// DEPRECATED v2.2 (https://anaplansite.atlassian.net/browse/USG-347)
+// REMOVE 3.0 (https://anaplansite.atlassian.net/browse/USG-524)
+
+@if not $enable-typography-next {
+  .typography-book {
+    @include typography(scale, book, $use-typography-next: false);
+  }
+
+  .typography-chapter {
+    @include typography(scale, chapter, $use-typography-next: false);
+  }
+
+  .typography-page {
+    @include typography(scale, page, $use-typography-next: false);
+  }
+
+  .typography-title {
+    @include typography(scale, title, $use-typography-next: false);
+  }
+
+  .typography-header {
+    @include typography(scale, header, $use-typography-next: false);
+  }
+
+  .typography-base {
+    @include typography(scale, $use-typography-next: false);
+  }
+
+  .typography-subheader {
+    @include typography(scale, subheader, $use-typography-next: false);
+  }
+
+  .typography-body {
+    @include typography(scale, body, $use-typography-next: false);
+  }
+
+  .typography-index {
+    @include typography(scale, index, $use-typography-next: false);
+  }
+
+  .typography-fingerprint {
+    @include typography(scale, fingerprint, $use-typography-next: false);
+  }
+
+  // Heading variants
+  .heading-largest {
+    @include typography(heading, largest, $use-typography-next: false);
+  }
+
+  .heading-larger {
+    @include typography(heading, larger, $use-typography-next: false);
+  }
+
+  .heading-large {
+    @include typography(heading, large, $use-typography-next: false);
+  }
+
+  .heading {
+    @include typography(heading, $use-typography-next: false);
+  }
+
+  .heading-small {
+    @include typography(heading, small, $use-typography-next: false);
+  }
+
+  .heading-smaller {
+    @include typography(heading, smaller, $use-typography-next: false);
+  }
+
+  .heading-smallest {
+    @include typography(heading, smallest, $use-typography-next: false);
+  }
+
+  // Copy variants
+  .copy {
+    @include typography(copy, $use-typography-next: false);
+  }
+
+  .copy-small {
+    @include typography(copy, small, $use-typography-next: false);
+  }
+
+  .copy-smaller {
+    @include typography(copy, smaller, $use-typography-next: false);
+  }
+  // DEPRECATED v2.0 (https://anaplansite.atlassian.net/browse/USG-357)
+  // REMOVE 3.0 (https://anaplansite.atlassian.net/browse/USG-412)
+
+  // Breaking BEM rules here in that you dont' need heading to get heading-foo
+  // This is due to the nature of needing to adjust text properties
+  .typography--book {
+    @include typography(scale, book, $use-typography-next: false);
+  }
+
+  .typography--chapter {
+    @include typography(scale, chapter, $use-typography-next: false);
+  }
+
+  .typography--page {
+    @include typography(scale, page, $use-typography-next: false);
+  }
+
+  .typography--title {
+    @include typography(scale, title, $use-typography-next: false);
+  }
+
+  .typography--header {
+    @include typography(scale, header, $use-typography-next: false);
+  }
+
+  .typography--base {
+    @include typography(scale, $use-typography-next: false);
+  }
+
+  .typography--subheader {
+    @include typography(scale, subheader, $use-typography-next: false);
+  }
+
+  .typography--body {
+    @include typography(scale, body, $use-typography-next: false);
+  }
+
+  .typography--index {
+    @include typography(scale, index, $use-typography-next: false);
+  }
+
+  .typography--fingerprint {
+    @include typography(scale, fingerprint, $use-typography-next: false);
+  }
+
+  // Heading variants
+  .heading--largest {
+    @include typography(heading, largest, $use-typography-next: false);
+  }
+
+  .heading--larger {
+    @include typography(heading, larger, $use-typography-next: false);
+  }
+
+  .heading--large {
+    @include typography(heading, large, $use-typography-next: false);
+  }
+
+  .heading--small {
+    @include typography(heading, small, $use-typography-next: false);
+  }
+
+  .heading--smaller {
+    @include typography(heading, smaller, $use-typography-next: false);
+  }
+
+  .heading--smallest {
+    @include typography(heading, smallest, $use-typography-next: false);
+  }
+
+  // Copy variants
+  .copy--small {
+    @include typography(copy, small, $use-typography-next: false);
+  }
+
+  .copy--smaller {
+    @include typography(copy, smaller, $use-typography-next: false);
+  }
+}

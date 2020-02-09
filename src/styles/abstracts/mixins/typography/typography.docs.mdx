@@ -1,0 +1,59 @@
+import { Story, Preview } from '@storybook/addon-docs/blocks'
+
+# Typography
+
+Typography ensures that data and information is legible and plays a key role in delivering our visual identity. We use Proxima Nova as our font of choice.
+
+## Typographic hierarchy
+
+Acrylic resets all typographic elements to the base size and removes margin and padding.
+Visual hierarchy should not be correlated to the context of the component or page.
+It is important to use the correct heading level (`<h1>`-`<h6>`) for the content, context, and best accessibility.
+
+### Scale
+
+<Story id="foundations-typography-scale--scale" height="1410px" />
+<Story id="foundations-typography-scale--scale-dark" height="1410px" />
+
+### Table
+
+Table styles are separate from the typography scale because they have unique font characteristics.
+Numbers within tables are displayed using the tabular number font variants.
+
+<Story id="foundations-typography-table--table" height="344px" />
+<Story id="foundations-typography-table--table-dark" height="344px" />
+
+### Usage
+
+To apply the `dark` theme to your typography, pass the `$theme: dark` parameter to the `typography` mixin or use the appropriately suffixed utility class.
+
+Typography is controlled by a global feature flag `$enable-typgraphy-next` that is by default off. To opt in to the next version of typography you can set this flag to `true`.
+
+```
+$enable-typography-next: true;
+
+@import "@anaplan/acrylic";
+```
+
+Acrylic exposes two methods for styling your content: a SASS mixin and utility classes. The mixin is the preferred method.
+
+#### SASS Mixin
+
+```
+@include typography(
+  $name: scale,
+  $modifier: grape,
+  $use-typography-next: true
+)
+```
+
+The mixin allows Acrylic to make modifications for users' preferences, locations, and devices at build time. All font properties should be passed as parameters so that Acrylic can make necessary adjustments.
+
+Until version 3.0, the `$use-typography-next` parameter is available to opt out/in of typography v2 at an individual call level. If passing `$use-typography-next: false` you can use the current API and its additional parameters.
+
+#### Utility class
+
+The utility classes are derived from the following pattern: `.t-[name]-[modifier]`.
+
+If additional styles are needed to style your content than the utility class provides, use the mixin.
+For example, prefer `<p class="my-paragraph">Lorem ipsum</p>` instead of `<p class="t-scale-blueberry my-paragraph">Lorem impusm</p>`.

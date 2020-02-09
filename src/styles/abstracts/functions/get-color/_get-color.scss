@@ -1,0 +1,24 @@
+$default-get-color-opacity: 1;
+
+@function get-color(
+  $name,
+  $opacity: $default-get-color-opacity,
+  $useDeprecated: false,
+  $theme: base
+) {
+  // TODO: Official color names nttps://anaplansite.atlassian.net/browse/USG-77
+
+  $return-color: null;
+
+  // look in the current version's palette
+  @if not $useDeprecated {
+    $theme-api: map-get($color-api, $theme);
+    $return-color: map-get($palette, map-get($theme-api, $name));
+  }
+
+  @if $opacity != $default-get-color-opacity {
+    @return rgba($return-color, $opacity);
+  } @else {
+    @return $return-color;
+  }
+}

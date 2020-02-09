@@ -1,0 +1,6 @@
+/**
+ *  Used to wrap all acryic component styles.
+ */
+@mixin acrylic-component() {
+  @content;
+}

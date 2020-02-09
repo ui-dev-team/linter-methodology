@@ -1,0 +1,118 @@
+## Summary
+
+Buttons are used as triggers to perform various actions. The button includes a label which is normally a 'verb' and clearly describes what the user is about to do.
+
+## Examples
+
+### Default
+
+The default Button looks like a plain text link. It removes all the styling of the native button.
+
+```editor
+---
+switchThemeForBlock: button
+---
+<button type="button" class="button">
+  Button
+</button>
+```
+
+### Primary Button
+
+The primary button can be seen as the most important button on the page and should be used sparingly. Ideally a single 'Call-to-Action' button draws the users attention and should clearly suggest the next step in the task flow.
+
+```editor
+---
+switchThemeForBlock: button
+---
+<button type="button" class="button button--primary">
+  Primary button
+</button>
+```
+
+### Secondary Button
+
+Secondary buttons should be more subdued and provide an alternative less likely path or a means of cancelling the action.
+
+```editor
+---
+switchThemeForBlock: button
+---
+<button type="button" class="button button--secondary">
+  Secondary button
+</button>
+```
+
+### Icon Button
+
+Where the button only contains an icon, provide complementary text for screen readers. Use the `.sr-only` utility class for hiding text.
+
+```editor
+---
+switchThemeForBlock: button
+---
+<button type="button" class="button button--icon">
+  <svg-icon icon="edit" class="button__icon"></svg-icon>
+  <span class="sr-only">Edit</span>
+</button>
+```
+
+### Button with an icon
+
+```editor
+---
+switchThemeForBlock: button
+---
+<!-- Default -->
+<button type="button" class="button">
+  <svg-icon icon="edit" class="button__icon" aria-hidden="true"></svg-icon> Button
+</button>
+
+<!-- Primary -->
+<button type="button" class="button button--primary">
+  <svg-icon icon="edit" class="button__icon" aria-hidden="true"></svg-icon> Primary button
+</button>
+
+<!-- Secondary -->
+<button type="button" class="button button--secondary">
+  <svg-icon icon="edit" class="button__icon" aria-hidden="true"></svg-icon> Secondary button
+</button>
+```
+
+### Disabled button
+
+```editor
+---
+switchThemeForBlock: button
+---
+<button type="button" class="button" disabled>
+  Disabled button
+</button>
+
+<button type="button" class="button button--primary" disabled>
+  Disabled button
+</button>
+
+<button type="button" class="button button--secondary" disabled>
+  Disabled button
+</button>
+
+<button type="button" class="button button--icon" disabled>
+  <svg-icon icon="edit" class="button__icon"></svg-icon>
+  <span class="sr-only">Edit</span>
+</button>
+```
+
+## HTML/CSS
+
+### `.button`
+
+```usage
+| Role | Attributes | Usage |
+| ==== | ========== | ===== |
+| |= `class="button--primary"` =| Applies necessary styling for the **primary** button. |
+| |= `class="button--secondary"` =| Applies necessary styling for the **secondary** button. |
+| |= `class="button--icon"` =| Applies necessary styling for the **icon** button. The child `svg-icon` element must be followed by screen-reader-friendly text. Wrap the text using the `.sr-only` class to hide, visually. |
+| |= `type="button"` =|  Indicates that the button is not a form `submit` button |
+| |= `disabled` =|  Indicates that the button is **disabled**. |
+```

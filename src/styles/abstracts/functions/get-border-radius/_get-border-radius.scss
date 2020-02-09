@@ -1,0 +1,15 @@
+@function get-border-radius($size) {
+  $result: null;
+  $values: (
+    small: 2px,
+    medium: 4px,
+  );
+
+  @if map-has-key($values, $size) {
+    $result: map-get($values, $size);
+  } @else {
+    @error "get-border-radius: Undefined size `#{$size}`. Expected one of `#{map-keys($values)}`.";
+  }
+
+  @return $result;
+}

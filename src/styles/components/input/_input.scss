@@ -1,0 +1,122 @@
+@include acrylic-component() {
+  $input-border-width: 1px;
+  $input-hover-border-width: 2px;
+
+  .input {
+    @include typography(scale, raspberry);
+    padding: spacing(1);
+    /*
+    * TODO: most example forms are full width at the moment
+    * Update when we have more info
+    */
+    width: 100%;
+    border: 2px dotted transparent;
+    box-shadow: 0 0 0 $input-border-width get-color(input-border);
+    border-radius: get-border-radius(small);
+    // setting custom focus and hover
+    outline: none;
+
+    // IE11 & Edge
+    // stylelint-disable-next-line selector-no-vendor-prefix
+    &::-ms-input-placeholder {
+      color: get-color(input-placeholder-color);
+    }
+
+    &::placeholder {
+      color: get-color(input-placeholder-color);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 0 0 $input-hover-border-width get-color(input-border);
+    }
+
+    &.input--error {
+      box-shadow: 0 0 0 $input-border-width get-color(input-error-border);
+    }
+
+    &:focus:not(:disabled) {
+      box-shadow: none;
+      border-color: get-color(input-focus-border);
+    }
+
+    &:focus.input--error {
+      box-shadow: none;
+      border-color: get-color(input-error-border);
+    }
+
+    // stylelint-disable-next-line selector-max-specificity
+    &.input--error:hover:not(:focus):not(:disabled) {
+      box-shadow: 0 0 0 $input-hover-border-width get-color(input-error-border);
+    }
+  }
+
+  .input--dark {
+    @include typography(scale, raspberry, $theme: dark);
+    box-shadow: 0 0 0 $input-border-width get-color(input-border, $theme: dark);
+
+    // IE11 & Edge
+    // stylelint-disable-next-line selector-no-vendor-prefix
+    &::-ms-input-placeholder {
+      color: get-color(input-placeholder-color, $theme: dark);
+    }
+
+    &::placeholder {
+      color: get-color(input-placeholder-color, $theme: dark);
+    }
+
+    &.input--error {
+      box-shadow: 0 0 0 $input-border-width
+        get-color(input-error-border, $theme: dark);
+    }
+
+    &:focus:not(:disabled) {
+      border-color: get-color(input-focus-border, $theme: dark);
+    }
+
+    // stylelint-disable-next-line selector-max-specificity
+    &:focus.input--error:not(:disabled) {
+      box-shadow: none;
+      border-color: get-color(input-error-border, $theme: dark);
+    }
+
+    // stylelint-disable-next-line selector-max-specificity
+    &:hover:not(:disabled):not(:focus) {
+      box-shadow: 0 0 0 $input-hover-border-width
+        get-color(input-border, $theme: dark);
+    }
+
+    // stylelint-disable-next-line selector-max-specificity
+    &.input--error:hover:not(:focus):not(:disabled) {
+      box-shadow: 0 0 0 $input-hover-border-width
+        get-color(input-error-border, $theme: dark);
+    }
+  }
+
+  .input__message {
+    @include typography(scale, cranberry);
+    display: block;
+    margin-top: spacing(1);
+  }
+
+  .input__message--error {
+    visibility: hidden;
+    color: get-color(input-error-color);
+  }
+
+  .input--error + .input__message--error {
+    visibility: visible;
+  }
+
+  .input__message--dark {
+    @include typography(scale, cranberry, $theme: dark);
+
+    &.input__message--error {
+      color: get-color(input-error-color, $theme: dark);
+    }
+  }
+}

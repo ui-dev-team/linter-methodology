@@ -1,0 +1,83 @@
+@import '../../variables/variables';
+
+@import 'spacing';
+
+@include describe('The `spacing` function') {
+  @include describe('units') {
+    @include it('returns `8px` for unit `1`') {
+      $test: spacing(1);
+      $expect: 8px;
+
+      @include assert-equal($test, $expect, 'Unit `1` does not return `8px`');
+    }
+    @include it('returns `16px` for unit `2`') {
+      $test: spacing(2);
+      $expect: 16px;
+
+      @include assert-equal($test, $expect, 'Unit `2` does not return `16px`');
+    }
+    @include it('returns `24px` for unit `3`') {
+      $test: spacing(3);
+      $expect: 24px;
+
+      @include assert-equal($test, $expect, 'Unit `3` does not return `24px`');
+    }
+    @include it('returns `32px` for unit `4`') {
+      $test: spacing(4);
+      $expect: 32px;
+
+      @include assert-equal($test, $expect, 'Unit `4` does not return `32px`');
+    }
+    @include it('returns `40px` for unit `5`') {
+      $test: spacing(5);
+      $expect: 40px;
+
+      @include assert-equal($test, $expect, 'Unit `5` does not return `40px`');
+    }
+    @include it('returns `48px` for unit `8`') {
+      $test: spacing(6);
+      $expect: 48px;
+
+      @include assert-equal($test, $expect, 'Unit `6` does not return `48px`');
+    }
+    @include it('returns `56px` for unit `7`') {
+      $test: spacing(7);
+      $expect: 56px;
+
+      @include assert-equal($test, $expect, 'Unit `7` does not return `56px`');
+    }
+    @include it('returns `64px` for unit `8`') {
+      $test: spacing(8);
+      $expect: 64px;
+
+      @include assert-equal($test, $expect, 'Unit `8` does not return `64px`');
+    }
+    @include it('returns `72px` for unit `9`') {
+      $test: spacing(9);
+      $expect: 72px;
+
+      @include assert-equal($test, $expect, 'Unit `9` does not return `72px`');
+    }
+    @include it('rejects invalid unit values') {
+      // TODO: implement when intended fail scenarios can be testsed https://github.com/oddbird/true/issues/146
+      @include assert-true(true);
+    }
+  }
+
+  @include describe('keywords') {
+    @include it('returns `4px` for keyword `half`') {
+      $test: spacing(half);
+      $expect: 4px;
+
+      @include assert-equal(
+        $test,
+        $expect,
+        'Keyword `half` does not return `4px`'
+      );
+    }
+    @include it('rejects invalid keyword values') {
+      // TODO: implement when intended fail scenarios can be testsed https://github.com/oddbird/true/issues/146
+      @include assert-true(true);
+    }
+  }
+}

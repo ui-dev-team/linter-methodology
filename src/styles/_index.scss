@@ -1,0 +1,50 @@
+/**
+ * This is the main file of the project.
+ * All files that are to be made public should be imported here.
+ */
+
+@charset "utf-8";
+
+@import url('https://use.typekit.net/mpv7lfl.css');
+
+// Import each file individually here.
+// The ordering is specific for each group: i.e. the foundations must come before,
+// abstracts, and abstracts must come before components.
+
+// ABSTRACTS
+
+// Variables
+@import 'src/styles/abstracts/variables/color-api';
+@import 'src/styles/abstracts/variables/palette';
+@import 'src/styles/abstracts/variables/responsive';
+@import 'src/styles/abstracts/variables/variables';
+
+// Functions
+@import 'src/styles/abstracts/functions/get-border-radius/get-border-radius';
+@import 'src/styles/abstracts/functions/get-color/get-color';
+@import 'src/styles/abstracts/functions/get-box-shadow/get-box-shadow';
+@import 'src/styles/abstracts/functions/map-deep-get';
+@import 'src/styles/abstracts/functions/spacing/spacing';
+
+// Mixins
+@import 'src/styles/abstracts/mixins/acrylic-component';
+@import 'src/styles/abstracts/mixins/base-typography';
+@import 'src/styles/abstracts/mixins/media-breakpoint';
+@import 'src/styles/abstracts/mixins/typography/typography';
+@import 'src/styles/abstracts/mixins/typography/typography-next';
+@import 'src/styles/abstracts/mixins/typography/typography-current';
+
+// Foundations
+@import 'src/styles/foundations/reset';
+
+// Components
+@import 'src/styles/components/button/button-current';
+@import 'src/styles/components/button/button';
+@import 'src/styles/components/input/input';
+@import 'src/styles/components/label/label';
+@import 'src/styles/components/textarea/textarea';
+
+// Utils
+@import 'src/styles/utils/breakpoints';
+@import 'src/styles/utils/spacing';
+@import 'src/styles/utils/typography';

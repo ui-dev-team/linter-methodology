@@ -1,0 +1,95 @@
+// All elements are not reset only those that are used -- this is to avoid bloat in the reset.
+// For example, resetting elements that are rarely used in our applications context (<map>, <math>, <ins>) or obsolete (<s>, <keygen>, or <command>)
+// would only add unused rules to the document.
+// File an RFE for any elements that should be added.
+
+// stylelint-disable  selector-max-universal, selector-max-type
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  @include base-typography();
+}
+
+html {
+  -ms-overflow-style: scrollbar;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: get-color(body-background);
+}
+
+main {
+  display: block;
+}
+
+// Reset only content that will contain text: e.g. phrasing content, heading content, etc.
+// to avoid text elements' parents having unintended sizing complicating text layout.
+// For example, if <li> was reset to base then it would be difficult to have the text of
+// <li>'s to be smaller than the base size.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include base-typography();
+}
+
+abbr {
+  text-decoration: none;
+}
+
+// form elements
+legend {
+  padding: 0;
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+// fix fonts for form elements
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+// lists
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+dl,
+dd {
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+// Interactive elements
+button {
+  margin: 0; // remove margin in firefox + safari
+  overflow: visible;
+}
+//stylelint-enable
+
+// just in case it's not in the default brower stylesheet
+[hidden] {
+  display: none;
+}
